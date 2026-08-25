@@ -25,12 +25,22 @@
   }
   body{
     font-family:'Aptos','Segoe UI',Arial,sans-serif;
-    background: url('https://i.imgur.com/RONOv9W.png') center/cover no-repeat fixed;
     color:var(--text);
     min-height:100vh;
     display:flex;
     padding:24px 16px;
     line-height:1.6;
+  }
+
+    body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://i.imgur.com/RONOv9W.png') center/cover no-repeat;
+    z-index: -1;
   }
   .app{
     width:100%;
