@@ -19,20 +19,22 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html, body{
-    height:100%;
     margin:0;
     overflow-x:hidden;
   }
+  
   body{
     font-family:'Aptos','Segoe UI',Arial,sans-serif;
     color:var(--text);
-    min-height:100vh;
-    display:flex;
-    padding:24px 16px;
-    line-height:1.6;
+    min-height: 100dvh; /* O 'd' salva vidas no celular: altura dinâmica exata! */
+    display: flex;
+    flex-direction: column; /* Ajuda a rolagem fluir de cima para baixo */
+    padding: 24px 16px;
+    line-height: 1.6;
   }
 
-    body::before {
+  /* Truque para travar o fundo no mobile */
+  body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -42,10 +44,12 @@
     background: url('https://i.imgur.com/RONOv9W.png') center/cover no-repeat;
     z-index: -1;
   }
+  
   .app{
     width:100%;
     max-width:700px;
-    margin:auto;
+    margin: auto; /* Centraliza a capa perfeitamente quando não tem muita altura */
+    flex-shrink: 0; /* Impede que o card encolha, deixando você rolar até a última vírgula */
   }
   .brandbar{
     display:flex;
@@ -246,10 +250,10 @@
 // ---------- Dados da história ----------
 const nodes = {
   "1": {
-    text: "<span class='situacao-label'>A SITUAÇÃO</span>\n\nVocê é a liderança de uma equipe de 12 pessoas.\n\nRicardão é um dos membros de sua equipe, trabalhando há três meses e meio (mas já está na Companhia há dois anos).\n\nRicardão faltou hoje (segunda-feira). E o que você nota é que essa é a quarta segunda-feira seguida que o Ricardão não aparece para trabalhar.\n\nEssas faltas do Ricardão têm impactado diretamente no resultado da sua área. Você e sua equipe têm feito horas extras, trabalhado sábados, e até domingos, nos últimos dois meses pra não deixar de entregar os resultados esperados.\n\nRicardão tampouco aparecia para trabalhar nos momentos de horas extras, sobrecarregando e afetando o moral da equipe. Por isso, é preciso tomar uma decisão para corrigir esta distorção.\n\nAlguma providência deve ser tomada em relação ao Ricardão. Qual dos cinco passos abaixo você daria primeiro? <strong>Escolha o primeiro passo que você tomará:</strong>",
+    text: "<span class='situacao-label'>A SITUAÇÃO</span>\n\nVocê é a liderança de uma equipe de 12 pessoas.\n\n<strong>Ricardão</strong> é um dos membros de sua equipe, trabalhando há três meses e meio (mas já está na Companhia há dois anos).\n\n<strong>Ricardão</strong> faltou hoje (segunda-feira). E o que você nota é que essa é a quarta segunda-feira seguida que o <strong>Ricardão</strong> não aparece para trabalhar.\n\nEssas faltas do <strong>Ricardão</strong> têm impactado diretamente no resultado da sua área. Você e sua equipe têm feito horas extras, trabalhado sábados, e até domingos, nos últimos dois meses pra não deixar de entregar os resultados esperados.\n\n<strong>Ricardão</strong> tampouco aparecia para trabalhar nos momentos de horas extras, sobrecarregando e afetando o moral da equipe. Por isso, é preciso tomar uma decisão para corrigir esta distorção.\n\nAlguma providência deve ser tomada em relação ao <strong>Ricardão</strong>. Qual dos cinco passos abaixo você daria primeiro? <strong>Escolha o primeiro passo que você tomará:</strong>",
     options: [
-      {label:"Assim que Ricardão voltar, chame-o de lado e converse com ele.", target:"9"},
-      {label:"Pergunte para algumas de suas pessoas lideradas que trabalham com Ricardão se elas sabem de algum problema pessoal que ele possa ter.", target:"4"},
+      {label:"Assim que <strong>Ricardão</strong> voltar, chame-o de lado e converse com ele.", target:"9"},
+      {label:"Pergunte para algumas de suas pessoas lideradas que trabalham com <strong>Ricardão</strong> se elas sabem de algum problema pessoal que ele possa ter.", target:"4"},
       {label:"Perguntar à liderança de uma outra área onde ele trabalhou anteriormente se ele já apresentava esse comportamento.", target:"7"},
       {label:"Discutir o assunto com sua liderança direta.", target:"11"},
       {label:"Na próxima oportunidade, transferi-lo para outro setor.", target:"34"},
