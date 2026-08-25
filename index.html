@@ -55,15 +55,13 @@
   }
   .cover-image-wrap{
     width:100%;
-    aspect-ratio:4/3;
     overflow:hidden;
+    line-height:0;
   }
   .cover-image{
     display:block;
     width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center;
+    height:auto;
   }
   .section-pad{
     padding:40px 36px;
@@ -179,21 +177,7 @@
   .reflection p{margin-bottom:8px;}
   .reflection p:last-child{margin-bottom:0;}
 
-  .ending-badge{
-    display:inline-block;
-    font-family:'Raleway',sans-serif;
-    font-weight:700;
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-    color:#ffffff;
-    background:var(--blue);
-    padding:6px 14px;
-    border-radius:20px;
-    margin-bottom:18px;
-  }
-
-  .restart-link{
+    .restart-link{
     display:inline-block;
     margin-top:26px;
     font-size:13px;
@@ -234,15 +218,14 @@
       <div id="story-text"></div>
       <div id="story-reflection"></div>
       <div id="story-options" class="options"></div>
-      <button class="restart-link" onclick="restart()">Recomeçar o exercício desde o início</button>
     </section>
 
     <!-- Tela 4: Encerramento -->
     <section id="screen-end" class="section-pad hidden">
-      <span class="ending-badge">Fim do exercício</span>
+      <h1>Fim da simulação</h1>
       <div id="end-text"></div>
       <div class="row-left" style="margin-top:28px;">
-        <button class="btn btn-primary" onclick="restart()">Recomeçar o exercício</button>
+        <button class="btn btn-primary" onclick="restart()">Recomeçar a simulação</button>
       </div>
     </section>
 
@@ -258,7 +241,7 @@ const nodes = {
       {label:"Assim que Ricardão voltar, chame-o de lado e converse com ele.", target:"9"},
       {label:"Pergunte para algumas de suas pessoas lideradas que trabalham com Ricardão se elas sabem de algum problema pessoal que ele possa ter.", target:"4"},
       {label:"Perguntar à liderança de uma outra área onde ele trabalhou anteriormente se ele já apresentava esse comportamento.", target:"7"},
-      {label:"Discutir o assunto com seu superior.", target:"11"},
+      {label:"Discutir o assunto com sua liderança direta.", target:"11"},
       {label:"Na próxima oportunidade, transferi-lo para outro setor.", target:"34"},
     ]
   },
@@ -329,7 +312,7 @@ const nodes = {
     ]
   },
   "11": {
-    text: "Você decidiu discutir o problema com seu superior antes de tomar qualquer medida. Ele disse:\n\n<em>“Não, não conheço o <strong>Ricardão</strong>, mas sei o quanto sua área está tendo problemas para entregar os resultados. Tivemos uma reunião de diretoria sobre esse assunto e não gostaria de ter outra reunião sobre isso.”</em>\n\n<em>“Então pelo amor de Deus, dê uma injeção de ânimo no seu pessoal. Parece que vamos ter que fazer hora extra no fim de semana outra vez e vai ser um inferno com os custos. Vá lá e dê tudo o que você pode”</em>.",
+    text: "Você decidiu discutir o problema com sua liderança direta antes de tomar qualquer medida. Ele disse:\n\n<em>“Não, não conheço o <strong>Ricardão</strong>, mas sei o quanto sua área está tendo problemas para entregar os resultados. Tivemos uma reunião de diretoria sobre esse assunto e não gostaria de ter outra reunião sobre isso.”</em>\n\n<em>“Então pelo amor de Deus, dê uma injeção de ânimo no seu pessoal. Parece que vamos ter que fazer hora extra no fim de semana outra vez e vai ser um inferno com os custos. Vá lá e dê tudo o que você pode”</em>.",
     options: [
       {label:"Decidir seu próximo passo.", target:"1"},
     ]
@@ -348,7 +331,7 @@ const nodes = {
     text: "Você disse a <strong>Ricardão</strong> que você é a chefia e ele deve ter mais respeito. <strong>Ricardão</strong> responde: <em>“Bom, se tenho respeito por alguma coisa é por mim mesmo. Acho que se exige muito respeito para ficar nesta equipe de m... Não há condições!”</em>\n\n<strong>Ricardão</strong> pede demissão.\n\nComo você se sente neste ponto?",
     options: [
       {label:"Que você poderia ter agido de outra forma? Você gostaria de ter uma chance de voltar atrás para ver o que poderia ser diferente?", target:"9"},
-      {label:"Que você fez o que qualquer outra liderança faria para disciplinar suas pessoas lideradas e mantê-las na linha e deixar claro quem é a chefia? (Se sim, o exercício está terminado para você. Pode fechar a apostila).", target:"END"},
+      {label:"Que você fez o que qualquer outra liderança faria para disciplinar suas pessoas lideradas e mantê-las na linha e deixar claro quem é a chefia? (Se sim, a simulação está terminada para você. Feche esta janela).", target:"END"},
     ]
   },
   "14": {
@@ -404,7 +387,7 @@ const nodes = {
     text: "Você avisou-o que quaisquer outros comentários e ele seria severamente tratado. <strong>Ricardão</strong> disse:\n\n<em>“Isto é o que eu quero dizer quando digo que está todo mundo no meu pé. Bom, não tenho de te aguentar! Largo disso tudo”</em>.\n\n<strong>Ricardão</strong> dirige-se para a saída com lágrimas nos olhos e pede demissão.\n\nNeste ponto como você se sente?",
     options: [
       {label:"Você poderia ter procedido de outro modo durante o desenrolar da história? Gostaria de ter outra chance e voltar atrás para agir de maneira diferente?", target:"9"},
-      {label:"Você fez o que qualquer liderança faria para corrigir suas pessoas lideradas, mantê-las na linha e para mostrar que é a chefia? (Se sim, você terminou o exercício). Feche a apostila.", target:"END"},
+      {label:"Você fez o que qualquer liderança faria para corrigir suas pessoas lideradas, mantê-las na linha e para mostrar que é a chefia? (Se sim, você terminou a simulação. Feche esta janela).", target:"END"},
     ]
   },
   "21": {
@@ -415,7 +398,7 @@ const nodes = {
   },
   "22": {
     text: "Agora que <strong>Ricardão</strong> falou alguma coisa sobre a causa das suas ausências na segunda-feira, vamos conversar um pouco sobre isso.\n\nNão há um final perfeitamente claro para este problema, assim como não encontraríamos na vida real. A liderança está constantemente lidando com pessoas em sua equipe, pares, sua própria liderança, e pode passar por problemas como esse. Suas escolhas, atitudes e comportamentos ao tomar decisões é que determinarão a resolução desses problemas.\n\nO problema de <strong>Ricardão</strong> levanta algumas questões interessantes:",
-    reflection: "Agora que você sabe alguma coisa sobre o problema é mais fácil ou mais difícil lidar com as suas faltas?\n\nVocê sente que a empresa deveria ser compreensiva e dar a <strong>Ricardão</strong> mais tempo para solucionar seus problemas?\n\nSimplesmente poder falar sobre seus problemas já é uma grande ajuda a <strong>Ricardão</strong>.\n\nFim do Exercício.",
+    reflection: "Agora que você sabe alguma coisa sobre o problema é mais fácil ou mais difícil lidar com as suas faltas?\n\nVocê sente que a empresa deveria ser compreensiva e dar a <strong>Ricardão</strong> mais tempo para solucionar seus problemas?\n\nSimplesmente poder falar sobre seus problemas já é uma grande ajuda a <strong>Ricardão</strong>.",
     ending: true
   },
   "23": {
@@ -437,8 +420,8 @@ const nodes = {
   "25": {
     text: "Você demitiu <strong>Ricardão</strong>.\n\nVocê entende que essa é a atitude mais acertada a tomar nessa situação e, nesse momento, afinal, você é a liderança.\n\nDe qualquer maneira, aqui estão algumas perguntas para você:\n\nSua ação pode causar algum problema com as outras pessoas colaboradoras de sua equipe?\n\nSua atitude pode ser uma reação mais emocional do que racional?\n\nVocê está admitindo para o <strong>Ricardão</strong> que não sabia mais o que fazer com ele?\n\nSerá que não existe mais nada para saber sobre <strong>Ricardão</strong> e os motivos que o estão levando a agir assim?",
     options: [
-      {label:"Se você respondeu Sim para alguma dessas questões, existe uma grande possibilidade de que você ainda precisa aprender um pouco mais sobre gestão de pessoas.", target:"1"},
-      {label:"Se você respondeu Não às 4 perguntas, não existe dúvida em você que o caminho que tomou é o correto. Deste modo, este exercício não lhe pode ensinar mais nada. Feche sua apostila.", target:"END"},
+      {label:"Se você respondeu Sim para alguma dessas questões, existe uma grande possibilidade de que você ainda precisa aprender um pouco mais sobre gestão de pessoas. Então, volte à página anterior e escolha outra alternativa.", target:"BACK"},
+      {label:"Se você respondeu Não às 4 perguntas, não existe dúvida em você de que o caminho que tomou é o correto. Deste modo, esta simulação não lhe pode ensinar mais nada. Feche esta janela.", target:"END"},
     ]
   },
   "26": {
@@ -498,7 +481,7 @@ const nodes = {
   "34": {
     text: "Você transferiu <strong>Ricardão</strong> na primeira oportunidade. E isto resolveu o seu problema como liderança de modo agradável, não?\n\nMas o que dizer da empresa da qual você é a liderança? Você realmente esteve à altura da sua responsabilidade apenas transferindo um problema para outra liderança, sem resolvê-lo?",
     options: [
-      {label:"Tome outra decisão.", target:"1"},
+      {label:"Volte à página que leu antes desta e tome outra decisão.", target:"BACK"},
     ]
   },
   "35": {
@@ -525,16 +508,16 @@ const nodes = {
     ]
   },
   "38": {
-    text: "Você desafiou a assistente social a colocar por escrito as acusações. No dia seguinte, você é chamado à sala do seu superior que já estava ciente de todo o assunto, levado pela assistente social. O seu superior perguntou se você estava <em>“perseguindo”</em> uma das pessoas da sua equipe e se não seria a sua falta de habilidade em MOTIVAR a sua equipe a causa da baixa produtividade de sua área.\n\nVocê então deu a sua versão, dizendo que não tinha ainda levado o assunto até ele, pois não possuía todas as informações, mas que agora ele havia passado dos limites, com envolvimento de terceiros, e que o jeito era solicitar uma suspensão de 10 dias para <strong>Ricardão</strong>.\n\nNeste ponto, como você se sente?",
+    text: "Você desafiou a assistente social a colocar por escrito as acusações. No dia seguinte, você é chamado à sala da sua liderança direta que já estava ciente de todo o assunto, levado pela assistente social. Sua liderança direta perguntou se você estava <em>“perseguindo”</em> uma das pessoas da sua equipe e se não seria a sua falta de habilidade em MOTIVAR a sua equipe a causa da baixa produtividade de sua área.\n\nVocê então deu a sua versão, dizendo que não tinha ainda levado o assunto adiante, pois não possuía todas as informações, mas que agora ele havia passado dos limites, com envolvimento de terceiros, e que o jeito era solicitar uma suspensão de 10 dias para <strong>Ricardão</strong>.\n\nNeste ponto, como você se sente?",
     options: [
-      {label:"Você fez o que qualquer liderança faria para corrigir suas pessoas colaboradoras, mantê-las na linha, e para mostrar quem é a chefia? (Se sim, você terminou o exercício). Feche a apostila.", target:"END"},
+      {label:"Você fez o que qualquer liderança faria para corrigir suas pessoas colaboradoras, mantê-las na linha, e para mostrar quem é a chefia? (Se sim, você terminou a simulação. Feche esta janela).", target:"END"},
       {label:"Você poderia ter procedido de outro modo durante o desenvolver da história? Gostaria de ter uma outra chance e voltar atrás para agir de maneira diferente?", target:"9"},
     ]
   },
   "39": {
     text: "Você não faria nada depois que <strong>Ricardão</strong> não faltou o restante do mês. Por que não? <strong>Ricardão</strong> parece estar tentando fazer o que você quer que ele faça. Um princípio para se ensinar um comportamento desejado é reconhecer quando ocorre.",
     options: [
-      {label:"Recompense <strong>Ricardão</strong>.", target:"1"},
+      {label:"Volte à página em que você estava antes desta, e recompense <strong>Ricardão</strong>.", target:"BACK"},
     ]
   },
   "40": {
@@ -546,12 +529,15 @@ const nodes = {
 };
 
 // ---------- Navegação ----------
+let historyStack = [];
+
 function goTo(screenId){
   document.querySelectorAll('.card > section').forEach(s => s.classList.add('hidden'));
   document.getElementById(screenId).classList.remove('hidden');
 }
 
 function startStory(){
+  historyStack = [];
   renderNode("1");
   goTo('screen-story');
 }
@@ -562,12 +548,22 @@ function paragraphsHTML(str){
 
 function renderNode(id){
   if(id === "END"){
-    showEnding("Obrigado(a) por percorrer o exercício. Releia as questões que apareceram ao longo do caminho e, se quiser, recomece para experimentar outras decisões.");
+    showEnding("Obrigado(a) por participar da simulação. Se quiser, recomece para experimentar outras decisões.");
+    return;
+  }
+
+  // A mágica que faz o "Voltar" funcionar perfeitamente
+  if(id === "BACK"){
+    historyStack.pop(); // Remove a página de erro atual da memória
+    const prevId = historyStack.pop(); // Recupera a página anterior onde a pessoa estava
+    renderNode(prevId || "1"); // Renderiza a página anterior
     return;
   }
 
   const node = nodes[id];
   if(!node){ return; }
+
+  historyStack.push(id); // Salva a tela atual no histórico de navegação
 
   if(node.ending){
     let html = paragraphsHTML(node.text);
