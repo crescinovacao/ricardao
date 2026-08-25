@@ -162,13 +162,13 @@
     background:var(--blue);
     color:#ffffff;
   }
-  .btn-primary:hover{background:var(--blue-dark);}
+  .btn-primary:active{background:var(--blue-dark);}
   .btn-ghost{
     background:transparent;
     color:var(--blue);
     border:1.5px solid var(--blue);
   }
-  .btn-ghost:hover{background:var(--blue-light);}
+  .btn-ghost:active{background:var(--blue-light);}
   .row-left{display:flex;justify-content:flex-start;}
   .row-right{display:flex;justify-content:flex-end;}
   .row-between{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
@@ -191,12 +191,9 @@
     line-height:1.45;
     cursor:pointer;
   }
-  .option-btn:hover{
-    background:#12161f;
-    border-color:#12161f;
-  }
   .option-btn:active{
     background:#12161f;
+    border-color:#12161f;
   }
 
 
@@ -224,7 +221,20 @@
     font-family:'Aptos','Segoe UI',Arial,sans-serif;
     padding:0;
   }
-  .restart-link:hover{color:var(--blue-dark);}
+  .restart-link:active{color:var(--blue-dark);}
+
+  /* Hover só entra em jogo em dispositivos com mouse/trackpad de verdade.
+     Isso evita que o toque no mobile (inclusive durante o scroll) acione
+     o estado de hover, que fica "grudado" até o usuário tocar em outro lugar. */
+  @media (hover:hover) and (pointer:fine){
+    .btn-primary:hover{background:var(--blue-dark);}
+    .btn-ghost:hover{background:var(--blue-light);}
+    .option-btn:hover{
+      background:#12161f;
+      border-color:#12161f;
+    }
+    .restart-link:hover{color:var(--blue-dark);}
+  }
 
   .hidden{display:none;}
 </style>
@@ -293,7 +303,7 @@ const nodes = {
     ]
   },
   "5": {
-    text: "Você decide continuar telefonando para a casa de <strong>Ricardão</strong> durante várias vezes ao dia. À tardinha o telefone foi atendido. A mesma mulher disse que <strong>Ricardão</strong> não estava. Quando você pergunta onde ele está, ela começa a chorar. Após alguns minutos, <strong>Ricardão</strong> vem ao telefone e pergunta quem está falando. Quando você diz, ele fala: <em>“Não posso conversar com você agora. Até logo”</em>, e desliga.",
+    text: "Você decide continuar telefonando para a casa de <strong>Ricardão</strong> durante várias vezes ao dia. À tardinha o telefone foi atendido. A mesma mulher disse que <strong>Ricardão</strong> não estava. Quando você pergunta onde ele está, ela começa a chorar.\n\nApós alguns minutos, <strong>Ricardão</strong> vem ao telefone e pergunta quem está falando. Quando você diz, ele fala: <em>“Não posso conversar com você agora. Até logo”</em>, e desliga.",
     options: [
       {label:"Terça pela manhã, quando <strong>Ricardão</strong> vier trabalhar, o que você fará?", target:"9"},
     ]
@@ -309,7 +319,7 @@ const nodes = {
     ]
   },
   "7": {
-    text: "Você decidiu perguntar à liderança de uma outra área, que já havia trabalhado com <strong>Ricardão</strong>, sobre sua experiência com ele. Ele disse: <em>“<strong>Ricardão</strong>? Eu o conheço muito bem. Foi uma das minhas melhores pessoas colaboradoras e senti muito quando ele saiu. Se a transferência para o seu setor não tivesse sido uma promoção, bem que gostaria de ter ficado com ele. Como ele vai indo? Ouvi dizer que ele casou com uma viúva com dois filhos adolescentes”</em>.",
+    text: "Você decidiu perguntar à liderança de uma outra área, que já havia trabalhado com <strong>Ricardão</strong>, sobre sua experiência com ele.\n\nEle disse: <em>“<strong>Ricardão</strong>? Eu o conheço muito bem. Foi uma das minhas melhores pessoas colaboradoras e senti muito quando ele saiu. Se a transferência para o seu setor não tivesse sido uma promoção, bem que gostaria de ter ficado com ele. Como ele vai indo? Ouvi dizer que ele casou com uma viúva com dois filhos adolescentes”</em>.",
     options: [
       {label:"Decida seu próximo passo.", target:"1"},
     ]
@@ -550,7 +560,7 @@ const nodes = {
     ]
   },
   "39": {
-    text: "Você não faria nada depois que <strong>Ricardão</strong> não faltou o restante do mês. Por que não? <strong>Ricardão</strong> parece estar tentando fazer o que você quer que ele faça. Um princípio para se ensinar um comportamento desejado é reconhecer quando ocorre.",
+    text: "Você não faria nada depois que <strong>Ricardão</strong> não faltou o restante do mês.\n\nPor que não? <strong>Ricardão</strong> parece estar tentando fazer o que você quer que ele faça. Um princípio para se ensinar um comportamento desejado é reconhecer quando ocorre.",
     options: [
       {label:"Volte à página em que você estava antes desta, e recompense <strong>Ricardão</strong>.", target:"BACK"},
     ]
