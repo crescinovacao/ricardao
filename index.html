@@ -113,6 +113,20 @@
   @media (max-width:600px){
     #screen-cover{padding:0 0 28px;}
     #screen-cover .cover-content{padding:22px 22px 0;}
+    /* Card mais alto no mobile pra preencher melhor a tela.
+       A imagem cresce em altura e usa object-fit:cover, então
+       corta um pouco das laterais em vez de ficar baixa/larga. */
+    .cover-image-wrap{
+      height:46vh;
+    }
+    .cover-image{
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+    }
+    #screen-cover h1{
+      font-size:26px;
+    }
   }
   h1{
     font-family:'Raleway',sans-serif;
@@ -169,6 +183,12 @@
     border:1.5px solid var(--blue);
   }
   .btn-ghost:active{background:var(--blue-light);}
+  @media (max-width:600px){
+    .btn{
+      padding:11px 20px;
+      font-size:14px;
+    }
+  }
   .row-left{display:flex;justify-content:flex-start;}
   .row-right{display:flex;justify-content:flex-end;}
   .row-between{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
