@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Caso Ricardão | Crescimentum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#9998A5;
+    --blue-dark:#222B3D;
+    --blue-light:#D0E0EA;
+    --text:#210000;
+    --bg:#f4f8fe;
+    --trio-dark:#222B3D;
+    --trio-mid:#9998A5;
+    --trio-light:#D0E0EA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html, body{
+    height:100%;
+    margin:0;
+    overflow-x:hidden;
+  }
+  body{
+    font-family:'Aptos','Segoe UI',Arial,sans-serif;
+    background: url('https://i.imgur.com/RONOv9W.png') center/cover no-repeat fixed;
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    padding:24px 16px;
+    line-height:1.6;
+  }
+  .app{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+  }
+  .brandbar{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    margin-bottom:24px;
+  }
+  .brandbar img{
+    height:32px;
+    width:auto;
+    display:block;
+  }
+  .card{
+    background:#ffffff;
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .cover-image-wrap{
+    width:100%;
+    aspect-ratio:4/3;
+    overflow:hidden;
+  }
+  .cover-image{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .section-pad{
+    padding:40px 36px;
+  }
+  @media (max-width:600px){
+    .section-pad{padding:28px 22px;}
+  }
+  #screen-cover{
+    padding:0 0 40px;
+  }
+  #screen-cover .cover-content{
+    padding:28px 36px 0;
+  }
+  @media (max-width:600px){
+    #screen-cover{padding:0 0 28px;}
+    #screen-cover .cover-content{padding:22px 22px 0;}
+  }
+  h1{
+    font-family:'Raleway',sans-serif;
+    font-weight:800;
+    font-size:30px;
+    color:var(--blue-dark);
+    margin-bottom:10px;
+  }
+  h2{
+    font-family:'Raleway',sans-serif;
+    font-weight:700;
+    font-size:20px;
+    color:var(--blue-dark);
+    margin-bottom:16px;
+  }
+  .subtitle{
+    font-size:16px;
+    color:var(--text);
+    margin-bottom:28px;
+  }
+  .lead{
+    font-size:15px;
+    color:var(--text);
+    margin-bottom:14px;
+  }
+  .lead:last-of-type{margin-bottom:0;}
+  .situacao-label{
+    display:block;
+    font-family:'Raleway',sans-serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--trio-mid);
+  }
+  .btn{
+    display:inline-block;
+    font-family:'Raleway',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    padding:13px 26px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    text-align:center;
+    transition:background 0.15s ease;
+  }
+  .btn-primary{
+    background:var(--blue);
+    color:#ffffff;
+  }
+  .btn-primary:hover{background:var(--blue-dark);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--blue);
+    border:1.5px solid var(--blue);
+  }
+  .btn-ghost:hover{background:var(--blue-light);}
+  .row-left{display:flex;justify-content:flex-start;}
+  .row-right{display:flex;justify-content:flex-end;}
+  .row-between{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+
+  .options{
+    margin-top:26px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .option-btn{
+    text-align:left;
+    background:var(--blue-dark);
+    border:1.5px solid var(--blue-dark);
+    color:#ffffff;
+    border-radius:10px;
+    padding:14px 18px;
+    font-family:'Aptos','Segoe UI',Arial,sans-serif;
+    font-size:15px;
+    line-height:1.45;
+    cursor:pointer;
+  }
+  .option-btn:hover{
+    background:#12161f;
+    border-color:#12161f;
+  }
+  .option-btn:active{
+    background:#12161f;
+  }
+
+
+  .reflection{
+    margin-top:22px;
+    padding:16px 18px;
+    background:var(--bg);
+    border-left:none;
+    border-radius:8px;
+    font-size:15px;
+    color:var(--text);
+  }
+  .reflection p{margin-bottom:8px;}
+  .reflection p:last-child{margin-bottom:0;}
+
+  .ending-badge{
+    display:inline-block;
+    font-family:'Raleway',sans-serif;
+    font-weight:700;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:#ffffff;
+    background:var(--blue);
+    padding:6px 14px;
+    border-radius:20px;
+    margin-bottom:18px;
+  }
+
+  .restart-link{
+    display:inline-block;
+    margin-top:26px;
+    font-size:13px;
+    color:var(--trio-mid);
+    text-decoration:underline;
+    cursor:pointer;
+    background:none;
+    border:none;
+    font-family:'Aptos','Segoe UI',Arial,sans-serif;
+    padding:0;
+  }
+  .restart-link:hover{color:var(--blue-dark);}
+
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="card">
+
+    <!-- Tela 1: Capa -->
+    <section id="screen-cover">
+      <div class="cover-image-wrap">
+        <img class="cover-image" src="https://i.imgur.com/CbfOCQi.png" alt="O Caso Ricardão | Crescimentum">
+      </div>
+      <div class="cover-content">
+        <h1>O Caso Ricardão</h1>
+        <div class="row-left" style="margin-top:28px;">
+          <button class="btn btn-primary" onclick="startStory()">Começar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tela 3: História -->
+    <section id="screen-story" class="section-pad hidden">
+      <div id="story-text"></div>
+      <div id="story-reflection"></div>
+      <div id="story-options" class="options"></div>
+      <button class="restart-link" onclick="restart()">Recomeçar o exercício desde o início</button>
+    </section>
+
+    <!-- Tela 4: Encerramento -->
+    <section id="screen-end" class="section-pad hidden">
+      <span class="ending-badge">Fim do exercício</span>
+      <div id="end-text"></div>
+      <div class="row-left" style="margin-top:28px;">
+        <button class="btn btn-primary" onclick="restart()">Recomeçar o exercício</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+// ---------- Dados da história ----------
+const nodes = {
+  "1": {
+    text: "<span class='situacao-label'>A SITUAÇÃO</span>\n\nVocê é a liderança de uma equipe de 12 pessoas.\n\nRicardão é um dos membros de sua equipe, trabalhando há três meses e meio (mas já está na Companhia há dois anos).\n\nRicardão faltou hoje (segunda-feira). E o que você nota é que essa é a quarta segunda-feira seguida que o Ricardão não aparece para trabalhar.\n\nEssas faltas do Ricardão têm impactado diretamente no resultado da sua área. Você e sua equipe têm feito horas extras, trabalhado sábados, e até domingos, nos últimos dois meses pra não deixar de entregar os resultados esperados.\n\nRicardão tampouco aparecia para trabalhar nos momentos de horas extras, sobrecarregando e afetando o moral da equipe. Por isso, é preciso tomar uma decisão para corrigir esta distorção.\n\nAlguma providência deve ser tomada em relação ao Ricardão. Qual dos cinco passos abaixo você daria primeiro? <strong>Escolha o primeiro passo que você tomará:</strong>",
+    options: [
+      {label:"Assim que Ricardão voltar, chame-o de lado e converse com ele.", target:"9"},
+      {label:"Pergunte para algumas de suas pessoas lideradas que trabalham com Ricardão se elas sabem de algum problema pessoal que ele possa ter.", target:"4"},
+      {label:"Perguntar à liderança de uma outra área onde ele trabalhou anteriormente se ele já apresentava esse comportamento.", target:"7"},
+      {label:"Discutir o assunto com seu superior.", target:"11"},
+      {label:"Na próxima oportunidade, transferi-lo para outro setor.", target:"34"},
+    ]
+  },
+  "3": {
+    text: "Você perguntou às pessoas colaboradoras, que riram para contar-lhe o que viram. Elas ficaram embaraçadas, mas uma das mais falantes disse:\n\n<em>“Estamos rindo de uma piada que Jorge contou na hora do almoço. Não tem nada a ver com você ou <strong>Ricardão</strong>”</em>.",
+    options: [
+      {label:"O que você fará agora?", target:"24"},
+    ]
+  },
+  "4": {
+    text: "Você decidiu perguntar aos outros membros da equipe se eles sabiam qual poderia ser o problema de <strong>Ricardão</strong>. Gostaria de saber se ele tem um problema de alcoolismo, um problema familiar, uma doença ou o que?\n\nVocê fala com três pessoas que tomam café logo após o almoço. Elas mostraram-se hesitantes para conversar, mas uma pessoa finalmente admitiu que alguém tinha visto <strong>Ricardão</strong> no bar com uma loira. Ele disse que <strong>Ricardão</strong> <em>“poderia estar bêbado”</em>. Nunca o tinha visto daquele jeito.",
+    options: [
+      {label:"Como você se aproximaria de <strong>Ricardão</strong> agora?", target:"1"},
+    ]
+  },
+  "5": {
+    text: "Você decide continuar telefonando para a casa de <strong>Ricardão</strong> durante várias vezes ao dia. À tardinha o telefone foi atendido. A mesma mulher disse que <strong>Ricardão</strong> não estava. Quando você pergunta onde ele está, ela começa a chorar. Após alguns minutos, <strong>Ricardão</strong> vem ao telefone e pergunta quem está falando. Quando você diz, ele fala: <em>“Não posso conversar com você agora. Até logo”</em>, e desliga.",
+    options: [
+      {label:"Terça pela manhã, quando <strong>Ricardão</strong> vier trabalhar, o que você fará?", target:"9"},
+    ]
+  },
+  "6": {
+    text: "Você perguntou a <strong>Ricardão</strong> se ele esteve realmente doente. Ele disse: <em>“Escute! Eu conheço bem as regras! É permitido faltar por motivo de doença própria ou de familiar próximo. E foi uma dessas duas coisas que aconteceu!”</em>.\n\nComo você trataria do assunto agora?",
+    options: [
+      {label:"Explicar a <strong>Ricardão</strong> que você pode exigir atestado médico, que você é a chefia e ele deveria respeitar este fato.", target:"13"},
+      {label:"Dizer a ele que seus problemas pessoais são problemas dele, mas que o seu problema é a entrega de resultados.", target:"24"},
+      {label:"Dizendo, <em>“Eu não queria que fosse assim, <strong>Ricardão</strong>, estou bastante aborrecido por você estar com tantos problemas. Mas estou preocupado com o fato de que suas ausências têm afetado o resultado do seu trabalho”</em>.", target:"28"},
+      {label:"Dizer a <strong>Ricardão</strong> que ele está demitido.", target:"25"},
+      {label:"Transferir <strong>Ricardão</strong> na primeira oportunidade.", target:"34"},
+    ]
+  },
+  "7": {
+    text: "Você decidiu perguntar à liderança de uma outra área, que já havia trabalhado com <strong>Ricardão</strong>, sobre sua experiência com ele. Ele disse: <em>“<strong>Ricardão</strong>? Eu o conheço muito bem. Foi uma das minhas melhores pessoas colaboradoras e senti muito quando ele saiu. Se a transferência para o seu setor não tivesse sido uma promoção, bem que gostaria de ter ficado com ele. Como ele vai indo? Ouvi dizer que ele casou com uma viúva com dois filhos adolescentes”</em>.",
+    options: [
+      {label:"Decida seu próximo passo.", target:"1"},
+    ]
+  },
+  "8": {
+    text: "Você decidiu chamar <strong>Ricardão</strong> para uma conversa num local mais privado e perguntar-lhe o que se passava na sua cabeça. Ele estava relutante a princípio, até que falou:\n\n<em>“Você sabe muito bem o que está errado. Tudo parece cair em cima de mim! Primeiro foi em casa, mas agora você também! É o suficiente para levar um homem a beber! O que você poderia fazer é largar do meu pé, pois eu ainda não o conheço muito bem e não gostaria de falar de um assunto pessoal para qualquer um”</em>.\n\nO que você faria com <strong>Ricardão</strong>, após ele ter dado uma resposta nesse tom?",
+    options: [
+      {label:"Lembrar que você é a chefia, que está cumprindo seu dever, e que ele deveria ter mais respeito por isso.", target:"13"},
+      {label:"Sugerir que ele volte ao serviço e se acalme. Você falará com ele mais tarde.", target:"19"},
+      {label:"Avisar que se ele fizer outros comentários desse tipo, será severamente tratado.", target:"20"},
+      {label:"Dizer que você pensou em ser útil. Você não deseja se intrometer mas está interessado em suas faltas.", target:"28"},
+      {label:"Dizer a <strong>Ricardão</strong> que ele está demitido por insubordinação.", target:"25"},
+      {label:"Transferi-lo novamente na primeira oportunidade.", target:"34"},
+    ]
+  },
+  "9": {
+    text: "Discutindo as faltas com <strong>Ricardão</strong>, qual das seguintes alternativas você escolheria?",
+    options: [
+      {label:"Explicar a importância de entregar os resultados da sua área no prazo e com qualidade. Dizer a ele o que poderá acontecer se todo mundo faltar nas segundas feiras. Pedir-lhe para melhorar.", target:"10"},
+      {label:"Dizer a ele que seus problemas pessoais são problema dele, mas que seu problema é a entrega dos resultados esperados de sua área.", target:"24"},
+      {label:"Esperar até que <strong>Ricardão</strong> toque no assunto das suas faltas, para não embaraçá-lo.", target:"16"},
+      {label:"Perguntar-lhe quais suas dificuldades.", target:"12"},
+      {label:"Ser amável, mas dizer a ele que você colocará uma carta de advertência em seu prontuário (afirmando que ele deve melhorar no próximo mês).", target:"17"},
+      {label:"Dizer-lhe que está demitido.", target:"25"},
+    ]
+  },
+  "10": {
+    text: "<strong>Ricardão</strong> disse: <em>“Tentarei melhorar”</em>.\n\nContudo, na segunda-feira seguinte faltou novamente e alguém, que disse ser sua esposa, telefonou dizendo que ele estava doente. Ela parecia estranha, como se estivesse bêbada.\n\nO que você faria então?",
+    options: [
+      {label:"Telefonar para a casa dele, a fim de verificar sua doença.", target:"14"},
+      {label:"Enviar flores para sua casa, com um cartão de <em>“estimo suas melhoras”</em>.", target:"27"},
+      {label:"Perguntar aos outros membros da equipe se eles sabem qual poderia ser o problema de <strong>Ricardão</strong> (se você não fez isso antes).", target:"4"},
+      {label:"Esperar até sua volta para conversar com ele.", target:"26"},
+      {label:"Entrar em contato com um psicólogo, para dar uma ajuda neste problema.", target:"40"},
+    ]
+  },
+  "11": {
+    text: "Você decidiu discutir o problema com seu superior antes de tomar qualquer medida. Ele disse:\n\n<em>“Não, não conheço o <strong>Ricardão</strong>, mas sei o quanto sua área está tendo problemas para entregar os resultados. Tivemos uma reunião de diretoria sobre esse assunto e não gostaria de ter outra reunião sobre isso.”</em>\n\n<em>“Então pelo amor de Deus, dê uma injeção de ânimo no seu pessoal. Parece que vamos ter que fazer hora extra no fim de semana outra vez e vai ser um inferno com os custos. Vá lá e dê tudo o que você pode”</em>.",
+    options: [
+      {label:"Decidir seu próximo passo.", target:"1"},
+    ]
+  },
+  "12": {
+    text: "Você perguntou a <strong>Ricardão</strong> que dificuldades ele tinha. Ele respondeu:\n\n<em>“Bem, é um tanto pessoal e não gostaria de conversar sobre isso, se você não se importa”</em>.\n\nQue medida você tomaria agora?",
+    options: [
+      {label:"Dizer-lhe que está demitido.", target:"25"},
+      {label:"Perguntar a <strong>Ricardão</strong> se ele estava realmente doente nas últimas três segundas feiras do mês.", target:"6"},
+      {label:"Dizer-lhe que seus problemas pessoais são problema dele, mas o seu problema é a entrega de resultados, no prazo e com qualidade.", target:"24"},
+      {label:"Ser amigável, mas explicar que você colocará uma carta de advertência no prontuário dele, afirmando que ele deve melhorar no próximo mês.", target:"17"},
+      {label:"Dizer alguma coisa como: <em>“<strong>Ricardão</strong>, não quero me meter onde não fui chamado, mas ao mesmo tempo você deve saber como suas faltas nas segundas-feiras afetam o resultado do seu trabalho. Estou interessado nisso e você também”</em>.", target:"28"},
+    ]
+  },
+  "13": {
+    text: "Você disse a <strong>Ricardão</strong> que você é a chefia e ele deve ter mais respeito. <strong>Ricardão</strong> responde: <em>“Bom, se tenho respeito por alguma coisa é por mim mesmo. Acho que se exige muito respeito para ficar nesta equipe de m... Não há condições!”</em>\n\n<strong>Ricardão</strong> pede demissão.\n\nComo você se sente neste ponto?",
+    options: [
+      {label:"Que você poderia ter agido de outra forma? Você gostaria de ter uma chance de voltar atrás para ver o que poderia ser diferente?", target:"9"},
+      {label:"Que você fez o que qualquer outra liderança faria para disciplinar suas pessoas lideradas e mantê-las na linha e deixar claro quem é a chefia? (Se sim, o exercício está terminado para você. Pode fechar a apostila).", target:"END"},
+    ]
+  },
+  "14": {
+    text: "Você telefona para a casa de <strong>Ricardão</strong> para verificar sua doença. Ninguém responde.\n\nO que você fará agora?",
+    options: [
+      {label:"Continuar chamando em intervalos regulares durante o dia.", target:"5"},
+      {label:"Pedir à secretária para continuar chamando.", target:"21"},
+      {label:"Esperar para falar com <strong>Ricardão</strong> quando ele voltar.", target:"26"},
+    ]
+  },
+  "15": {
+    text: "Você respondeu a <strong>Ricardão</strong>: <em>“Você conversou sobre isso com sua mulher?”</em>\n\nEle respondeu: <em>“Sim, mas ela tem estado tão ocupada com os dois garotos que não me ouve. Sabia que teria problemas casando com uma viúva, mas não esperava que fosse assim!”</em>\n\nComo você agiria agora?",
+    options: [
+      {label:"Dizendo: <em>“Estou satisfeito que você tenha percebido a seriedade disto e espero que você possa fazê-la ver, também. <strong>Ricardão</strong>, espero que você faça o melhor.”</em>", target:"10"},
+      {label:"Dizendo: <em>“É bem duro ser casado com uma viúva com filhos”</em>.", target:"33"},
+      {label:"Não diga nada e continue ouvindo.", target:"18"},
+    ]
+  },
+  "16": {
+    text: "Você decidiu esperar até que <strong>Ricardão</strong> fale sobre as faltas.\n\nEle não o faz. Contudo, ele não falta nas duas semanas seguintes, mas falta na segunda e terça posteriores, e está ausente hoje (a segunda-feira seguinte).",
+    options: [
+      {label:"Quando (e se) ele vier amanhã, como vai proceder com ele?", target:"9"},
+    ]
+  },
+  "17": {
+    text: "Você colocou uma carta de advertência no prontuário do <strong>Ricardão</strong>, afirmando que ele deve melhorar no próximo mês.\n\n<strong>Ricardão</strong> faltou as primeiras duas segundas-feiras do mês seguinte.\n\nNeste ponto o que você fará?",
+    options: [
+      {label:"Alertá-lo para o que acontecerá com ele, se faltar outra vez nas próximas duas segundas-feiras.", target:"35"},
+      {label:"Esperar para ver se <strong>Ricardão</strong> falta no resto do mês.", target:"37"},
+      {label:"Transferi-lo na primeira oportunidade.", target:"34"},
+      {label:"Dizer-lhe que você não pretende se intrometer em seus problemas pessoais, mas está preocupado em como suas faltas continuam afetando o resultado do seu trabalho.", target:"28"},
+      {label:"Expressar a <strong>Ricardão</strong> sua esperança de que ele melhore esse mês. Então esperar para ver se ele faltará no resto do mês.", target:"37"},
+    ]
+  },
+  "18": {
+    text: "Você decidiu não dizer nada, mas continua ouvindo. <strong>Ricardão</strong> prossegue:\n\n<em>“Marta, minha esposa, tem uma filha adolescente casada, cujo casamento está muito mal. Também o garoto, meu enteado, que é dois anos mais moço, fugiu de casa duas vezes nos últimos dois meses. Tudo parece acontecer nos fins de semana.</em>\n\n<em>Primeiro, a filha veio para nossa casa, furiosa com o marido, que a seguiu e brigaram. Algumas vezes eles fazem as pazes e voltam para sua casa, outras não.</em>\n\n<em>Então o rapaz fugiu e a polícia telefonou para irmos buscá-lo. Domingo à meia-noite tive que ir de carro até o próximo estado para tirá-lo da prisão. Só consegui voltar na segunda às oito da noite.</em>\n\n<em>Tudo isso ocorre nos fins de semana e é muito desagradável para Marta. Acho que ela vai perder as estribeiras. Ela fica muito chateada e doente nas segundas-feiras e tenho medo de deixá-la sozinha. Mas sei que isto causa problemas no serviço. Espero conseguir resolver a situação logo”</em>.\n\nQual seria sua atuação agora?",
+    options: [
+      {label:"Explicar a <strong>Ricardão</strong> que você entende o que está acontecendo, mas que não pode mantê-lo na empresa nessas condições, porque isso sobrecarrega a equipe e prejudica os resultados. Combinam que ele tem duas semanas para organizar as coisas, e então voltarão a conversar. Coloca-se a disposição para apoiá-lo, caso precise de ajuda.", target:"22"},
+      {label:"Dizer a <strong>Ricardão</strong> que seus problemas pessoais são problemas dele, mas o seu problema é a entrega de resultado no prazo e com qualidade.", target:"24"},
+      {label:"Explicar que você colocará uma carta de advertência em seu prontuário afirmando que ele deve melhorar no próximo mês.", target:"17"},
+    ]
+  },
+  "19": {
+    text: "Após a situação envolvendo <strong>Ricardão</strong> e as pessoas colaboradoras, as coisas ficaram calmas nos dias seguintes, exceto por alguma gargalhada no seu setor, quando você não estava por perto.\n\nVocê deve fazer a escala de hora extra para dois terços do seu pessoal, para o próximo sábado e domingo. Você:",
+    options: [
+      {label:"Excluiria <strong>Ricardão</strong> da hora extra, mas não diria a ele diretamente?", target:"30"},
+      {label:"Excluiria <strong>Ricardão</strong> da hora extra, mas diria que se ele <em>“tomasse jeito”</em> seria incluído no futuro?", target:"32"},
+      {label:"Diria a <strong>Ricardão</strong> que você está programando-o para hora extra, mas perguntaria se estaria interessado em fazer parte da equipe para produzir o necessário. Salientaria a importância de cada pessoa colaboradora fazer sua parte.", target:"10"},
+      {label:"Chamaria <strong>Ricardão</strong> de lado e explicaria que tem feito tudo para ajudá-lo a melhorar sua frequência porque está afetando o trabalho, e você não o escalaria para hora extra se isto complicasse o problema que ele está tendo.", target:"28"},
+    ]
+  },
+  "20": {
+    text: "Você avisou-o que quaisquer outros comentários e ele seria severamente tratado. <strong>Ricardão</strong> disse:\n\n<em>“Isto é o que eu quero dizer quando digo que está todo mundo no meu pé. Bom, não tenho de te aguentar! Largo disso tudo”</em>.\n\n<strong>Ricardão</strong> dirige-se para a saída com lágrimas nos olhos e pede demissão.\n\nNeste ponto como você se sente?",
+    options: [
+      {label:"Você poderia ter procedido de outro modo durante o desenrolar da história? Gostaria de ter outra chance e voltar atrás para agir de maneira diferente?", target:"9"},
+      {label:"Você fez o que qualquer liderança faria para corrigir suas pessoas lideradas, mantê-las na linha e para mostrar que é a chefia? (Se sim, você terminou o exercício). Feche a apostila.", target:"END"},
+    ]
+  },
+  "21": {
+    text: "Você pediu à secretária para continuar ligando para <strong>Ricardão</strong>. Às três horas, ela telefonou dizendo que ninguém respondia.",
+    options: [
+      {label:"Quando <strong>Ricardão</strong> voltar na Terça pela manhã, como você agira em relação a ele?", target:"9"},
+    ]
+  },
+  "22": {
+    text: "Agora que <strong>Ricardão</strong> falou alguma coisa sobre a causa das suas ausências na segunda-feira, vamos conversar um pouco sobre isso.\n\nNão há um final perfeitamente claro para este problema, assim como não encontraríamos na vida real. A liderança está constantemente lidando com pessoas em sua equipe, pares, sua própria liderança, e pode passar por problemas como esse. Suas escolhas, atitudes e comportamentos ao tomar decisões é que determinarão a resolução desses problemas.\n\nO problema de <strong>Ricardão</strong> levanta algumas questões interessantes:",
+    reflection: "Agora que você sabe alguma coisa sobre o problema é mais fácil ou mais difícil lidar com as suas faltas?\n\nVocê sente que a empresa deveria ser compreensiva e dar a <strong>Ricardão</strong> mais tempo para solucionar seus problemas?\n\nSimplesmente poder falar sobre seus problemas já é uma grande ajuda a <strong>Ricardão</strong>.\n\nFim do Exercício.",
+    ending: true
+  },
+  "23": {
+    text: "A assistente social disse: <em>“Bom, a história de <strong>Ricardão</strong> parece muito confusa para mim. Por que você não conversa outra vez com ele e vamos ver como o caso fica. Não vejo razão para ir lá.”</em>",
+    options: [
+      {label:"Voltar para sua conversa com <strong>Ricardão</strong>.", target:"8"},
+    ]
+  },
+  "24": {
+    text: "Após seu comentário, <strong>Ricardão</strong> não disse nada e foi direto para o trabalho.\n\nNaquela tarde, uma das pessoas colaboradoras contou a você que <strong>Ricardão</strong> estava contando para todo mundo quão mal você o havia tratado. Mais tarde, assim que passou por ele, você percebeu que ele fazia um gesto às suas costas. Três pessoas colaboradoras da sua equipe riram. Quando você se virou, <strong>Ricardão</strong> estava trabalhando.\n\nO que você fará?",
+    options: [
+      {label:"Nada, continuar na sua <em>“ronda”</em>, mas ficar de olho em <strong>Ricardão</strong>.", target:"19"},
+      {label:"Pedir às pessoas colaboradoras que riram para que elas contassem o que haviam visto.", target:"3"},
+      {label:"Alertar <strong>Ricardão</strong> que seria melhor dedicar-se ao trabalho e deixar de fazer comentários e gestos por detrás de você. Prosseguir sua <em>“ronda”</em>.", target:"19"},
+      {label:"Chamar <strong>Ricardão</strong> a um lugar mais reservado e perguntar a ele o que se passa na sua cabeça.", target:"8"},
+      {label:"Dizer a <strong>Ricardão</strong> que ele está <em>“demitido”</em>.", target:"25"},
+    ]
+  },
+  "25": {
+    text: "Você demitiu <strong>Ricardão</strong>.\n\nVocê entende que essa é a atitude mais acertada a tomar nessa situação e, nesse momento, afinal, você é a liderança.\n\nDe qualquer maneira, aqui estão algumas perguntas para você:\n\nSua ação pode causar algum problema com as outras pessoas colaboradoras de sua equipe?\n\nSua atitude pode ser uma reação mais emocional do que racional?\n\nVocê está admitindo para o <strong>Ricardão</strong> que não sabia mais o que fazer com ele?\n\nSerá que não existe mais nada para saber sobre <strong>Ricardão</strong> e os motivos que o estão levando a agir assim?",
+    options: [
+      {label:"Se você respondeu Sim para alguma dessas questões, existe uma grande possibilidade de que você ainda precisa aprender um pouco mais sobre gestão de pessoas.", target:"1"},
+      {label:"Se você respondeu Não às 4 perguntas, não existe dúvida em você que o caminho que tomou é o correto. Deste modo, este exercício não lhe pode ensinar mais nada. Feche sua apostila.", target:"END"},
+    ]
+  },
+  "26": {
+    text: "Você decidiu esperar até sua volta para falar com <strong>Ricardão</strong>.",
+    options: [
+      {label:"Selecione a alternativa que você usará quando <strong>Ricardão</strong> voltar.", target:"9"},
+    ]
+  },
+  "27": {
+    text: "Você decidiu enviar algumas flores com um cartão de <em>“estimo melhoras”</em>.\n\nNa terça, <strong>Ricardão</strong> não menciona nada sobre as flores.",
+    options: [
+      {label:"Selecione outra alternativa.", target:"10"},
+    ]
+  },
+  "28": {
+    text: "Você disse a <strong>Ricardão</strong> que não quer se intrometer, mas expressou sua preocupação sobre como suas faltas estão afetando seu trabalho.\n\n<strong>Ricardão</strong> disse:\n\n<em>“Sei que você está preocupado, eu também. Peço desculpas pelo que está acontecendo mas não posso ajudá-lo. Já avisei minha esposa que poderia perder o emprego se continuasse assim”</em>.\n\nQual alternativa você seguiria agora?",
+    options: [
+      {label:"Dizer: <em>“estou satisfeito que você perceba a seriedade disso, e espero que você consiga fazê-la ver também. <strong>Ricardão</strong>, espero que você melhore”</em>.", target:"10"},
+      {label:"Dizer: <em>“Você conversou sobre isso com sua esposa?”</em>.", target:"15"},
+      {label:"Não dizer nada, mas continuar escutando.", target:"18"},
+      {label:"Impressionar <strong>Ricardão</strong> com a seriedade do problema na situação de trabalho, e alertá-lo de que deve melhorar ou assumir as consequências.", target:"35"},
+    ]
+  },
+  "29": {
+    text: "Você retirou a carta de advertência do prontuário de <strong>Ricardão</strong> e disse que espera que ele mantenha entregando seu trabalho com qualidade e no prazo.\n\n<strong>Ricardão</strong> pode ou não faltar nas próximas segundas-feiras. Se isto acontecer, é um outro problema.",
+    options: [
+      {label:"Você já se perguntou qual era o problema de <strong>Ricardão</strong>. Outras alternativas de ação o levariam a falar sobre isso, e talvez você gostaria de ouvi-lo falar sobre seus problemas.", target:"18"},
+      {label:"Discuta as questões formuladas.", target:"22"},
+    ]
+  },
+  "30": {
+    text: "Você decidiu excluir <strong>Ricardão</strong> das horas extras. Não disse nada a ele diretamente, mas comunica às outras pessoas colaboradoras, que elas terão que participar das horas extras.",
+    options: [
+      {label:"Continuar.", target:"36"},
+    ]
+  },
+  "31": {
+    text: "Depois que <strong>Ricardão</strong> compareceu a todas as segundas-feiras no resto do mês, você disse a ele para manter um bom nível de trabalho.\n\nEle respondeu: <em>“Estou tentando”</em>.\n\n<strong>Ricardão</strong> compareceu nas três semanas seguintes, inclusive nas horas extras.\n\nAo final de tudo disso, o que você fará?",
+    options: [
+      {label:"Não fará nada.", target:"39"},
+      {label:"Você dirá a ele que vai tirar a carta de advertência do prontuário e expressará o desejo de que mantenha o bom nível de trabalho e resultados.", target:"29"},
+    ]
+  },
+  "32": {
+    text: "Você decidiu excluir <strong>Ricardão</strong> das horas extras do próximo fim de semana, mas falou que caso ele se comportasse, seria incluído no futuro.\n\n<strong>Ricardão</strong> não disse nada, apenas continuou a trabalhar.",
+    options: [
+      {label:"Continuar.", target:"36"},
+    ]
+  },
+  "33": {
+    text: "Você observou a <strong>Ricardão</strong> o quanto é duro ser casado com uma viúva com filhos. <strong>Ricardão</strong> disse:\n\n<em>“Eu que o diga!”</em>.\n\nQue alternativa você escolherá agora?",
+    options: [
+      {label:"Dizer: <em>“Estou contente por você perceber a seriedade disso e espero que possa fazê-la perceber também. <strong>Ricardão</strong>, espero que você melhore”</em>.", target:"10"},
+      {label:"Não dizer nada, mas continuar ouvindo.", target:"18"},
+    ]
+  },
+  "34": {
+    text: "Você transferiu <strong>Ricardão</strong> na primeira oportunidade. E isto resolveu o seu problema como liderança de modo agradável, não?\n\nMas o que dizer da empresa da qual você é a liderança? Você realmente esteve à altura da sua responsabilidade apenas transferindo um problema para outra liderança, sem resolvê-lo?",
+    options: [
+      {label:"Tome outra decisão.", target:"1"},
+    ]
+  },
+  "35": {
+    text: "Você lembrou a <strong>Ricardão</strong> do que poderia acontecer se ele faltasse na próxima segunda-feira. Ele compareceu na segunda-feira.\n\nNa segunda seguinte, na hora do almoço, você notou que ele estava com ar doentio. Quando perguntou a ele qual era o problema, ele disse que se sentia meio doente. Você enviou-o para o médico, de onde ele foi para casa, dispensado. O ambulatório notificou que <strong>Ricardão</strong> estava com forte gripe.\n\n<strong>Ricardão</strong>, contou à enfermeira (e você soube) que estava com medo de ser demitido, se ficasse em casa doente. Esteve ausente por seis dias.\n\nQuando ele voltar, o que você fará?",
+    options: [
+      {label:"Dizer-lhe que, apesar de sua doença, ainda está sob a carta de advertência devido às suas ausências nas segundas-feiras e que deve <em>“tomar jeito”</em>.", target:"24"},
+      {label:"Dizer-lhe que você está <em>“limpando”</em> sua ficha e espera que ele não tenha mais problemas no futuro.", target:"10"},
+      {label:"Dizer-lhe que você está preocupado com a doença dele, que não quer se intrometer, mas pergunta a ele se a dificuldade que estava tendo, que causava as faltas nas segundas-feiras, vai ser solucionada.", target:"28"},
+      {label:"Não dizer nada a <strong>Ricardão</strong>.", target:"36"},
+    ]
+  },
+  "36": {
+    text: "Nesta tarde, a assistente social diz a você que <strong>Ricardão</strong> foi reclamar de maus tratos e que você o persegue.",
+    options: [
+      {label:"Dizer à assistente social que as acusações são ridículas e desafiá-la para escrevê-las e dar entrada como uma queixa mais formal.", target:"38"},
+      {label:"Contar à assistente social a situação e dizer que você deseja conversar com <strong>Ricardão</strong> sobre o problema, e que ela pode estar presente se <strong>Ricardão</strong> assim desejar.", target:"23"},
+    ]
+  },
+  "37": {
+    text: "Você esperou para ver se <strong>Ricardão</strong> iria faltar no restante do mês. Ele não faltou.\n\nNeste ponto, que medida você tomaria?",
+    options: [
+      {label:"Não faria nada.", target:"39"},
+      {label:"Você diria para ele continuar a manter o bom nível do seu trabalho.", target:"29"},
+    ]
+  },
+  "38": {
+    text: "Você desafiou a assistente social a colocar por escrito as acusações. No dia seguinte, você é chamado à sala do seu superior que já estava ciente de todo o assunto, levado pela assistente social. O seu superior perguntou se você estava <em>“perseguindo”</em> uma das pessoas da sua equipe e se não seria a sua falta de habilidade em MOTIVAR a sua equipe a causa da baixa produtividade de sua área.\n\nVocê então deu a sua versão, dizendo que não tinha ainda levado o assunto até ele, pois não possuía todas as informações, mas que agora ele havia passado dos limites, com envolvimento de terceiros, e que o jeito era solicitar uma suspensão de 10 dias para <strong>Ricardão</strong>.\n\nNeste ponto, como você se sente?",
+    options: [
+      {label:"Você fez o que qualquer liderança faria para corrigir suas pessoas colaboradoras, mantê-las na linha, e para mostrar quem é a chefia? (Se sim, você terminou o exercício). Feche a apostila.", target:"END"},
+      {label:"Você poderia ter procedido de outro modo durante o desenvolver da história? Gostaria de ter uma outra chance e voltar atrás para agir de maneira diferente?", target:"9"},
+    ]
+  },
+  "39": {
+    text: "Você não faria nada depois que <strong>Ricardão</strong> não faltou o restante do mês. Por que não? <strong>Ricardão</strong> parece estar tentando fazer o que você quer que ele faça. Um princípio para se ensinar um comportamento desejado é reconhecer quando ocorre.",
+    options: [
+      {label:"Recompense <strong>Ricardão</strong>.", target:"1"},
+    ]
+  },
+  "40": {
+    text: "Você entrou em contato com um psicólogo para ajudá-lo em seu problema, mas o psicólogo não pôde ajudar, já que você não sabe qual é o problema de <strong>Ricardão</strong>.\n\nVocê então decide discuti-lo com <strong>Ricardão</strong>.",
+    options: [
+      {label:"Tome outra decisão.", target:"9"},
+    ]
+  }
+};
+
+// ---------- Navegação ----------
+function goTo(screenId){
+  document.querySelectorAll('.card > section').forEach(s => s.classList.add('hidden'));
+  document.getElementById(screenId).classList.remove('hidden');
+}
+
+function startStory(){
+  renderNode("1");
+  goTo('screen-story');
+}
+
+function paragraphsHTML(str){
+  return str.split('\n\n').map(p => `<p class="lead">${p.replace(/\n/g,'<br>')}</p>`).join('');
+}
+
+function renderNode(id){
+  if(id === "END"){
+    showEnding("Obrigado(a) por percorrer o exercício. Releia as questões que apareceram ao longo do caminho e, se quiser, recomece para experimentar outras decisões.");
+    return;
+  }
+
+  const node = nodes[id];
+  if(!node){ return; }
+
+  if(node.ending){
+    let html = paragraphsHTML(node.text);
+    if(node.reflection){
+      html += `<div class="reflection">${paragraphsHTML(node.reflection)}</div>`;
+    }
+    showEnding(html, true);
+    return;
+  }
+
+  document.getElementById('story-text').innerHTML = paragraphsHTML(node.text);
+
+  const reflectionEl = document.getElementById('story-reflection');
+  if(node.reflection){
+    reflectionEl.innerHTML = `<div class="reflection">${paragraphsHTML(node.reflection)}</div>`;
+  } else {
+    reflectionEl.innerHTML = "";
+  }
+
+  const optsEl = document.getElementById('story-options');
+  optsEl.innerHTML = "";
+  node.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = opt.label;
+    btn.onclick = () => renderNode(opt.target);
+    optsEl.appendChild(btn);
+  });
+
+  goTo('screen-story');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showEnding(html, isRaw){
+  document.getElementById('end-text').innerHTML = isRaw ? html : `<p class="lead">${html}</p>`;
+  goTo('screen-end');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function restart(){
+  goTo('screen-cover');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
