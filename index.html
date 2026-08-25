@@ -35,10 +35,6 @@
   html, body{
     margin:0;
     overflow-x:hidden;
-    height:100%;
-  }
-  html{
-    overscroll-behavior-y:none; /* evita o bounce elástico do iOS "descentralizar" telas curtas */
   }
   
   body{
@@ -51,7 +47,6 @@
     flex-direction: column; /* Ajuda a rolagem fluir de cima para baixo */
     padding: 24px 16px;
     line-height: 1.6;
-    overscroll-behavior-y:none;
   }
 
   /* Truque para travar o fundo no mobile */
@@ -153,6 +148,16 @@
     margin-bottom:14px;
   }
   .lead:last-of-type{margin-bottom:0;}
+  .qlist{
+    margin:0 0 14px 20px;
+    padding:0;
+    font-size:15px;
+    color:var(--text);
+  }
+  .qlist li{
+    margin-bottom:8px;
+  }
+  .qlist li:last-child{margin-bottom:0;}
   .situacao-label{
     display:block;
     font-family:'Raleway',sans-serif;
@@ -483,7 +488,7 @@ const nodes = {
     ]
   },
   "25": {
-    text: "Você demitiu <strong>Ricardão</strong>.\n\nVocê entende que essa é a atitude mais acertada a tomar nessa situação e, nesse momento, afinal, você é a liderança.\n\nDe qualquer maneira, aqui estão algumas perguntas para você:\n\nSua ação pode causar algum problema com as outras pessoas colaboradoras de sua equipe?\n\nSua atitude pode ser uma reação mais emocional do que racional?\n\nVocê está admitindo para o <strong>Ricardão</strong> que não sabia mais o que fazer com ele?\n\nSerá que não existe mais nada para saber sobre <strong>Ricardão</strong> e os motivos que o estão levando a agir assim?",
+    text: "Você demitiu <strong>Ricardão</strong>.\n\nVocê entende que essa é a atitude mais acertada a tomar nessa situação e, nesse momento, afinal, você é a liderança.\n\nDe qualquer maneira, aqui estão algumas perguntas para você:\n\n<ul class=\"qlist\"><li>Sua ação pode causar algum problema com as outras pessoas colaboradoras de sua equipe?</li><li>Sua atitude pode ser uma reação mais emocional do que racional?</li><li>Você está admitindo para o <strong>Ricardão</strong> que não sabia mais o que fazer com ele?</li><li>Será que não existe mais nada para saber sobre <strong>Ricardão</strong> e os motivos que o estão levando a agir assim?</li></ul>",
     options: [
       {label:"Se você respondeu Sim para alguma dessas questões, existe uma grande possibilidade de que você ainda precisa aprender um pouco mais sobre gestão de pessoas. Então, volte à página anterior e escolha outra alternativa.", target:"BACK"},
       {label:"Se você respondeu Não às 4 perguntas, não existe dúvida em você de que o caminho que tomou é o correto. Deste modo, esta simulação não lhe pode ensinar mais nada. Feche esta janela.", target:"END"},
@@ -608,7 +613,14 @@ function startStory(){
 }
 
 function paragraphsHTML(str){
-  return str.split('\n\n').map(p => `<p class="lead">${p.replace(/\n/g,'<br>')}</p>`).join('');
+  return str.split('\n\n').map(p => {
+    const trimmed = p.trim();
+    // Blocos de lista (bullets) já vêm prontos em HTML — não embrulhar em <p>
+    if(trimmed.startsWith('<ul') || trimmed.startsWith('<ol')){
+      return trimmed;
+    }
+    return `<p class="lead">${p.replace(/\n/g,'<br>')}</p>`;
+  }).join('');
 }
 
 function renderNode(id){
@@ -659,18 +671,18 @@ function renderNode(id){
   });
 
   goTo('screen-story');
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top:0, left:0, behavior:'instant'});
 }
 
 function showEnding(html, isRaw){
   document.getElementById('end-text').innerHTML = isRaw ? html : `<p class="lead">${html}</p>`;
   goTo('screen-end');
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top:0, left:0, behavior:'instant'});
 }
 
 function restart(){
   goTo('screen-cover');
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top:0, left:0, behavior:'instant'});
 }
 </script>
 
